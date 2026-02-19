@@ -49,19 +49,26 @@ def validate_username(username):
 
 def validate_password(password):
     """
-    Password format: lowercase + @ + _ + ## + min 8 chars
+    Password format:
+    - First 5 letters (any case)
+    - At least 1 special character anywhere
+    - 4 digits anywhere
     """
-    if len(password) < 8:
-        return False, "Password must be at least 8 characters"
+    # Check minimum length
+    if len(password) < 10:
+        return False, "Password must be at least 10 characters"
 
-    if password != password.lower():
-        return False, "Password must be lowercase"
+    # Check for first 5 letters at start
+    if not re.match(r"^[A-Za-z]{5}", password):
+        return False, "Password must start with 5 letters"
 
-    if "@" not in password or "_" not in password:
-        return False, "Password must contain @ and _"
+    # Check at least 1 special character anywhere
+    if not re.search(r"[!@#$%^&*(),.?\":{}|<>_\-+=]", password):
+        return False, "Password must contain at least 1 special character"
 
-    if not re.search(r"\d", password):
-        return False, "Password must contain at least one number"
+    # Check at least 4 digits anywhere
+    if len(re.findall(r"\d", password)) < 4:
+        return False, "Password must contain at least 4 digits"
 
     return True, "Valid"
 

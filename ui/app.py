@@ -21,8 +21,8 @@ if not st.session_state.logged_in:
 *Username format:* FIRST 5 LETTERS OF NAME @AIR_1234  
 Example: RICHA@BOM_2025
 
-*Password format:* lowercase + @ + _ + number  
-Example: richa@bom_25
+*Password format:* 5 letter (camel case) + 1 special charc + combo of 4 number s 
+Example: Richa@8659
 """)
 
     username = st.text_input("Username")

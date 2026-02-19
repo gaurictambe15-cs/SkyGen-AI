@@ -85,7 +85,7 @@ def create_user(username, password):
     try:
         cursor.execute(
             "INSERT INTO users (username, airport_code, password) VALUES (?, ?, ?)",
-            (username, airport_code, password)
+            (username,password)
         )
         conn.commit()
         return True, "✅ User created successfully"

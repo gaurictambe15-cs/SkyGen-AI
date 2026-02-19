@@ -72,9 +72,6 @@ def validate_password(password):
 def create_user(username, password):
     username = username.upper()
 
-    # Extract airport code from username
-    airport_code = username.split("@")[1].split("_")[0]
-
     # Validate username
     valid_user, msg_user = validate_username(username)
     if not valid_user:

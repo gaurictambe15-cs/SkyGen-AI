@@ -1,13 +1,25 @@
 # ATC DB
-
+import os
 import sqlite3
 import re
 
-DB_PATH="atc_users.db"
+# Use writable directory for Streamlit Cloud
+DB_DIR = "db"
+DB_PATH = os.path.join(DB_DIR, "atc_users.db")
 
+# If running on Streamlit Cloud, /tmp is writable
+if "STREAMLIT_SERVER_PORT" in os.environ:
+    DB_DIR = "/tmp/db"
+    if not os.path.exists(DB_DIR):
+        os.makedirs(DB_DIR)
+    DB_PATH = os.path.join(DB_DIR, "atc_users.db")
+else:
+    if not os.path.exists(DB_DIR):
+        os.makedirs(DB_DIR)
+    DB_PATH = os.path.join(DB_DIR, "atc_users.db")
 
-# --- Database setup ---
-conn = sqlite3.connect("db/atc_users.db", check_same_thread=False)
+# Connect to database
+conn = sqlite3.connect(DB_PATH, check_same_thread=False)
 cursor = conn.cursor()
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS users (

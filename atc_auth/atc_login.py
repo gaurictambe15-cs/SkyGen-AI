@@ -6,6 +6,7 @@ import re
 # Use writable directory for Streamlit Cloud
 DB_DIR = "db"
 DB_PATH = os.path.join(DB_DIR, "atc_users.db")
+DB_PATH="/tmp/atc_users.db"
 
 # If running on Streamlit Cloud, /tmp is writable
 if "STREAMLIT_SERVER_PORT" in os.environ:

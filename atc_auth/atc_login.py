@@ -105,8 +105,7 @@ def create_user(username, password):
 # -------------------------
 def login(username, password):
     username = username.upper()
-    password = password.lower()
-
+    
     cursor.execute(
         "SELECT * FROM users WHERE username=? AND password=?",
         (username, password)

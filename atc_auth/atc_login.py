@@ -84,7 +84,7 @@ def create_user(username, password):
 
     try:
         cursor.execute(
-            "INSERT INTO users (username,password) VALUES (?, ?, ?)",
+            "INSERT INTO users (username,password) VALUES (?,?)",
             (username,password)
         )
         conn.commit()

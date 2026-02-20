@@ -64,7 +64,7 @@ def render_module3(df_flight_data):
     # Slice top flights for all downstream outputs
     # -----------------------------
     current_time=int(time.time())
-    window_seconds=time_options
+    window_seconds=time_options*60
     if 'last_contact' in df_flight_data.columns:
         df_flight_data=df_flight_data[(current_time-df_flight_data['last_contact'])<=window_seconds]
     df_risk_live_display = df_risk_live.head(num_display)

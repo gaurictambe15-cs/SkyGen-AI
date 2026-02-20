@@ -3,6 +3,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 from live.ai_risk_logic import train_threshold_model,predict_risk_live,get_live_flight_risk
+import time 
 
 
 def render_module3(df_flight_data):
@@ -62,6 +63,10 @@ def render_module3(df_flight_data):
     # -----------------------------
     # Slice top flights for all downstream outputs
     # -----------------------------
+    current_time=int(time.time())
+    window_seconds=time_options
+    if 'last_contact' in df_flight_data.columns:
+        df_flight_data=df_flight_data[(current_time-df_flight_data['last_contact'])<=window_seconds]
     df_risk_live_display = df_risk_live.head(num_display)
 
     # -----------------------------
